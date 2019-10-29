@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace FootShop\web\Controller;
+namespace FootShop\Web\Controller;
 
 use FootShop\Brands\Entity\BrandStats;
 use FootShop\Brands\Repository\BrandStatsRepository;
@@ -27,20 +27,24 @@ class StatsController implements Controller
 
         echo $this->twig->render('stats.html', [
             'type' => 'stats',
-            'brands' => array_map(function (BrandStats $stats) {
-                return $this->transformStats($stats);
-            }, $stats),
+            'brands' => $this->transformStats($stats),
         ]);
     }
 
-    private function transformStats(BrandStats $stats): array
+    /**
+     * @param iterable|BrandStats[] $stats
+     * @return iterable
+     */
+    private function transformStats(iterable $stats): iterable
     {
-        return [
-            'name' => $stat->getName(),
-            'quantity' => $stat->getQuantity(),
-            'reserved' => $stat->getReserved(),
-            'price_quantity' => $stat->getPriceQuantity(),
-            'price_reserved' => $stat->getPriceReserved(),
-        ];
+        foreach ($stats as $stat) {
+            yield [
+                'name' => $stat->getName(),
+                'quantity' => $stat->getQuantity(),
+                'reserved' => $stat->getReserved(),
+                'price_quantity' => $stat->getPriceQuantity(),
+                'price_reserved' => $stat->getPriceReserved(),
+            ];
+        }
     }
 }

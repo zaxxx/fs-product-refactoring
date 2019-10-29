@@ -68,7 +68,7 @@ SELECT p.id, p.name, p.color, p.price, p.brand_id, p.quantity, p.reserved, b.nam
 FROM products p
 LEFT JOIN brands b ON p.brand_id = b.id
 {$where}
-ORDER BY :order :direction
+ORDER BY :order {$query->getDirection()}
 LIMIT :limit
 SQL;
 
@@ -76,9 +76,8 @@ SQL;
         foreach ($binds as $bind) {
             $bind($statement);
         }
-        $statement->bindValue(':order', $query->getOrder());
-        $statement->bindValue(':direction', $query->getDirection());
-        $statement->bindValue(':limit', $query->getLimit());
+        $statement->bindValue(':order', $query->getOrder(), PDO::PARAM_STR);
+        $statement->bindValue(':limit', $query->getLimit(), PDO::PARAM_INT);
 
         return $statement;
     }

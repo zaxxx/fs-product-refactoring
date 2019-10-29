@@ -43,16 +43,12 @@ class PDOProductRepositoryTest extends TestCase
                 ],
                 false
             );
-        $pdoStatement->expects(self::exactly(3))
+        $pdoStatement->expects(self::exactly(2))
             ->method('bindValue')
             ->willReturnOnConsecutiveCalls(
                 new ReturnCallback(function ($parameter, $value) {
                     self::assertEquals(':order', $parameter);
                     self::assertEquals('id', $value);
-                }),
-                new ReturnCallback(function ($parameter, $value) {
-                    self::assertEquals(':direction', $parameter);
-                    self::assertEquals('ASC', $value);
                 }),
                 new ReturnCallback(function ($parameter, $value) {
                     self::assertEquals(':limit', $parameter);
@@ -69,7 +65,7 @@ SELECT p.id, p.name, p.color, p.price, p.brand_id, p.quantity, p.reserved, b.nam
 FROM products p
 LEFT JOIN brands b ON p.brand_id = b.id
 
-ORDER BY :order :direction
+ORDER BY :order ASC
 LIMIT :limit
 SQL;
 
@@ -119,7 +115,7 @@ SQL;
                 ],
                 false
             );
-        $pdoStatement->expects(self::exactly(5))
+        $pdoStatement->expects(self::exactly(4))
             ->method('bindValue')
             ->willReturnOnConsecutiveCalls(
                 new ReturnCallback(function ($parameter, $value) {
@@ -133,10 +129,6 @@ SQL;
                 new ReturnCallback(function ($parameter, $value) {
                     self::assertEquals(':order', $parameter);
                     self::assertEquals('id', $value);
-                }),
-                new ReturnCallback(function ($parameter, $value) {
-                    self::assertEquals(':direction', $parameter);
-                    self::assertEquals('ASC', $value);
                 }),
                 new ReturnCallback(function ($parameter, $value) {
                     self::assertEquals(':limit', $parameter);
@@ -153,7 +145,7 @@ SELECT p.id, p.name, p.color, p.price, p.brand_id, p.quantity, p.reserved, b.nam
 FROM products p
 LEFT JOIN brands b ON p.brand_id = b.id
 WHERE p.name LIKE :name AND b.id = :brand
-ORDER BY :order :direction
+ORDER BY :order ASC
 LIMIT :limit
 SQL;
 

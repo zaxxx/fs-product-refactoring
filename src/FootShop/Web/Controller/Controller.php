@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace FootShop\web\Controller;
+namespace FootShop\Web\Controller;
 
 use Throwable;
 

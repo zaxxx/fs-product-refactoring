@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace FootShop\web\Controller;
+namespace FootShop\Web\Controller;
 
 use FootShop\Brands\Entity\Brand;
 use FootShop\Brands\Repository\BrandRepository;
@@ -52,34 +52,42 @@ class ProductController implements Controller
         echo $this->twig->render('product.html', [
             'type' => 'product',
             'title' => 'Products',
-            'brands' => array_map(function (Brand $brand) {
-                return $this->transformBrand($brand);
-            }, $brands),
-            'products' => array_map(function (Product $product) {
-                return $this->transformProduct($product);
-            }, $products),
+            'brands' => $this->transformBrands($brands),
+            'products' => $this->transformProducts($products),
         ]);
     }
 
-    private function transformBrand(Brand $brand): array
+    /**
+     * @param iterable|Brand[] $brands
+     * @return iterable
+     */
+    private function transformBrands(iterable $brands): iterable
     {
-        return [
-            'id' => $brand->getId(),
-            'name' => $brand->getName(),
-        ];
+        foreach ($brands as $brand) {
+            yield [
+                'id' => $brand->getId(),
+                'name' => $brand->getName(),
+            ];
+        }
     }
 
-    private function transformProduct(Product $product): array
+    /**
+     * @param iterable|Product[] $products
+     * @return iterable
+     */
+    private function transformProducts(iterable $products): iterable
     {
-        return [
-            'id' => $product->getId(),
-            'name' => $product->getName(),
-            'brand' => $product->getBrandName(),
-            'price' => $product->getPrice(),
-            'quantity' => $product->getQuantity(),
-            'reserved' => $product->getReserved(),
-            'sum_price' => $product->getSumPrice(),
-            'sum_reserved_price' => $product->getSumReservedPrice(),
-        ];
+        foreach ($products as $product) {
+            yield [
+                'id' => $product->getId(),
+                'name' => $product->getName(),
+                'brand' => $product->getBrandName(),
+                'price' => $product->getPrice(),
+                'quantity' => $product->getQuantity(),
+                'reserved' => $product->getReserved(),
+                'sum_price' => $product->getSumPrice(),
+                'sum_reserved_price' => $product->getSumReservedPrice(),
+            ];
+        }
     }
 }

@@ -30,19 +30,19 @@ class PSRProductsQueryProvider implements ProductsQueryProvider
 
         $this->query = new ProductsQuery();
 
-        if (array_key_exists('name', $queryParams)) {
+        if (array_key_exists('name', $queryParams) && !empty($queryParams['name'])) {
             $this->query->setName((string)$queryParams['name']);
         }
 
-        if (array_key_exists('brand', $queryParams)) {
+        if (array_key_exists('brand', $queryParams) && !empty($queryParams['brand'])) {
             $this->query->setBrandId((int)$queryParams['brand']);
         }
 
-        if (array_key_exists('order', $queryParams)) {
+        if (array_key_exists('order', $queryParams) && !empty($queryParams['order'])) {
             $this->query->setOrder((string)$queryParams['order']);
         }
 
-        if (array_key_exists('limit', $queryParams)) {
+        if (array_key_exists('limit', $queryParams) && !empty($queryParams['limit'])) {
             $this->query->setLimit((int)$queryParams['limit']);
         }
 
