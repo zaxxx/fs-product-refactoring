@@ -7,7 +7,7 @@ use FootShop\Products\Entity\Product;
 use FootShop\Products\Factory\ProductFactory;
 use FootShop\Products\Repository\PDO\PDOProductRepository;
 use FootShop\Products\Repository\PDO\ProductArrayHydrator;
-use FootShop\Products\Repository\ProductsQuery;
+use FootShop\Products\Query\ProductsQuery;
 use PDO;
 use PDOStatement;
 use PHPUnit\Framework\MockObject\Stub\ReturnCallback;

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace FootShop\Products\Repository;
+namespace FootShop\Products\Query;
 
 use InvalidArgumentException;
 

@@ -5,7 +5,7 @@ namespace FootShop\Products\Repository\PDO;
 
 use FootShop\Products\Factory\ProductFactory;
 use FootShop\Products\Repository\ProductRepository;
-use FootShop\Products\Repository\ProductsQuery;
+use FootShop\Products\Query\ProductsQuery;
 use PDO;
 use PDOStatement;
 
