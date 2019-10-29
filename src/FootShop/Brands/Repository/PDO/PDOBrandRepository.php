@@ -12,7 +12,7 @@ class PDOBrandRepository implements BrandRepository
     /** @var PDO */
     private $pdo;
 
-    /** @var \FootShop\Brands\Factory\BrandFactory */
+    /** @var BrandFactory */
     private $brandFactory;
 
     /** @var BrandArrayHydrator */
