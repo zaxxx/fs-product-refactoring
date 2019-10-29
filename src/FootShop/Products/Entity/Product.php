@@ -108,4 +108,14 @@ class Product
     {
         $this->reserved = $reserved;
     }
+
+    public function getSumPrice(): float
+    {
+        return $this->getPrice() * $this->getQuantity();
+    }
+
+    public function getSumReservedPrice(): float
+    {
+        return $this->getPrice() * $this->getReserved();
+    }
 }
