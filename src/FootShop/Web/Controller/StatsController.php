@@ -27,6 +27,7 @@ class StatsController implements Controller
 
         echo $this->twig->render('stats.html', [
             'type' => 'stats',
+            'title' => 'Stats',
             'brands' => $this->transformStats($stats),
         ]);
     }
