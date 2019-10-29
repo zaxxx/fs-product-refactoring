@@ -11,9 +11,10 @@
         "ext-pdo": "*",
         "twig/twig": "^2.5",
         "monolog/monolog": "^1.23",
-        "hafo/di": "^0.6.1",
+        "hafo/di": "^1.0",
         "beberlei/assert": "^3.2",
-        "zendframework/zend-diactoros": "^2.1"
+        "zendframework/zend-diactoros": "^2.1",
+        "nette/caching": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.3"
