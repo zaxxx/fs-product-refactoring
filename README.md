@@ -1,6 +1,18 @@
 Refactoring exercise
 ===
 
+What did I do
+---
+
+- **Strict types & typehints everywhere**
+- **Installed a DI container** - #1 must-have in any application, no matter how small IMO.
+The DI container used is my own implementation of the PSR Container.
+- **Rewrote code so there is no `abstract` nor `extends`**
+- **Repositories are interfaces** - decoupled the application from database layer
+- **Used PDO in a safer manner** - (hopefully) no SQL injections
+- **Wrote some tests**
+- Unfortunately I only have Win7 on my home PC, so I used UwAmp instead of Docker.
+
 How to start
 ---
 1. Bootstrap database image with fixtures and install dependencies
